@@ -1,0 +1,31 @@
+networks:
+  postgres:
+    external: true
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: sample-private-db
+    restart: always
+    env_file:
+      - ./envs/postgres.env
+    volumes:
+      - ./certs/server.cert:/certs/server.cert:ro
+      - ./certs/postgres_cert.key:/certs/server.key:ro
+    ports:
+      - 5432:5432
+      - 5433:443
+
+  pgadmin:
+    image: dpage/pgadmin4:7.8
+    restart: always
+    env_file:
+      - ./envs/pgadmin.env
+    ports:
+      - 5001:80
+      - 5002:443
+    volumes:
+      - ./certs/server.cert:/certs/server.cert:ro
+      - ./certs/postgres_cert.key:/certs/server.key:ro
+    links:
+      - "postgres:postgres"
