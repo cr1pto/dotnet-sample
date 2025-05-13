@@ -7,6 +7,7 @@ namespace IdentityServerAspNetIdentity;
 public static class Config
 {
     private static string apiHost = "https://localhost:5071";
+    // private static string webHost = "http://localhost:4200";
     private static string webHost = "https://localhost:4200";
     public static IEnumerable<IdentityResource> IdentityResources =>
         new IdentityResource[]
@@ -91,9 +92,11 @@ public static class Config
 
                 // where to redirect to after login
                 RedirectUris = { $"{webHost}/callback" },
+                // RedirectUris = { $"{webHost}/index.html" },
 
                 // where to redirect to after logout
-                PostLogoutRedirectUris = { $"{webHost}/callback" },
+                PostLogoutRedirectUris = { webHost },
+                // PostLogoutRedirectUris = { $"{webHost}" },
 
                 AllowOfflineAccess = true,
 

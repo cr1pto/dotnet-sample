@@ -21,7 +21,7 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-var allowedOrigins = new[] { "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
+var allowedOrigins = new[] { "http://localhost:4200", "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
 
 builder.Services.AddCors(options =>
 {

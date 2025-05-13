@@ -50,7 +50,7 @@ internal static class HostingExtensions
 
         builder.Services.AddCors(options =>
         {
-            var allowedOrigins = new[] { "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
+            var allowedOrigins = new[] { "http://localhost:4200", "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
             options.AddPolicy("Default",
                 builder =>
                 {
@@ -68,7 +68,7 @@ internal static class HostingExtensions
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        var allowedOrigins = new[] { "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
+        var allowedOrigins = new[] { "http://localhost:4200", "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
         app.UseSerilogRequestLogging();
 
         if (app.Environment.IsDevelopment())
