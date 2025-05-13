@@ -49,6 +49,7 @@
       "launchSettingsFilePath": "${workspaceFolder}/IdentityServerAspNetIdentity/Properties/launchSettings.json",
       "cwd": "${workspaceFolder}/IdentityServerAspNetIdentity",
       "stopAtEntry": false,
+      // "args": ["/seed"],
       "serverReadyAction": {
         "action": "openExternally",
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
@@ -102,6 +103,7 @@
       "program": "${workspaceFolder}/IdentityServerAspNetIdentity/bin/Debug/net9.0/IdentityServerAspNetIdentity.dll",
       "launchSettingsFilePath": "${workspaceFolder}/IdentityServerAspNetIdentity/Properties/launchSettings.json",
       "cwd": "${workspaceFolder}/IdentityServerAspNetIdentity",
+      // "args": ["/seed"],
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",

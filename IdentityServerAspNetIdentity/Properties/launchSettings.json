@@ -12,6 +12,19 @@
       "Kestrel__Certificates__Default__Path": "/code/dotnet-sample/certs/aspnetapp.pfx",
       "Kestrel__Certificates__Default__Password": "changeit",
       "ConnectionStrings__IdDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=IdDb;Pooling=true;Connection Lifetime=0;"
+    },
+    "SelfHost-mac": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": ".well-known/openid-configuration",
+      // "commandLineArgs": "/seed",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:44385",
+      "Kestrel__Certificates__Default__Path": "/Users/cloud/code/dotnet-sample/certs/aspnetapp.pfx",
+      "Kestrel__Certificates__Default__Password": "changeit",
+      "ConnectionStrings__IdDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=IdDb;Pooling=true;Connection Lifetime=0;"
     }
   }
 }
