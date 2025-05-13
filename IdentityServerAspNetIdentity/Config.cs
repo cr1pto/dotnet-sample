@@ -7,6 +7,7 @@ namespace IdentityServerAspNetIdentity;
 public static class Config
 {
     private static string apiHost = "https://localhost:5071";
+    private static string webHost = "https://localhost:4200";
     public static IEnumerable<IdentityResource> IdentityResources =>
         new IdentityResource[]
         {
@@ -83,16 +84,16 @@ public static class Config
             // interactive ASP.NET Core Web App
             new Client
             {
-                ClientId = "web",
+                ClientId = "angular_spa",
                 ClientSecrets = { new Secret("secret".Sha256()) },
 
                 AllowedGrantTypes = GrantTypes.Code,
 
                 // where to redirect to after login
-                RedirectUris = { $"{apiHost}/signin-oidc" },
+                RedirectUris = { $"{webHost}/callback" },
 
                 // where to redirect to after logout
-                PostLogoutRedirectUris = { $"{apiHost}/signout-callback-oidc" },
+                PostLogoutRedirectUris = { $"{webHost}/callback" },
 
                 AllowOfflineAccess = true,
 

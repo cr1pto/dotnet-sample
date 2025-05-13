@@ -35,7 +35,7 @@ internal static class HostingExtensions
             .AddInMemoryApiScopes(Config.ApiScopes)
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<ApplicationUser>();
-        
+
         builder.Services.AddAuthentication()
             .AddGoogle(options =>
             {
@@ -48,13 +48,29 @@ internal static class HostingExtensions
                 options.ClientSecret = "copy client secret from Google here";
             });
 
+        builder.Services.AddCors(options =>
+        {
+            var allowedOrigins = new[] { "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
+            options.AddPolicy("Default",
+                builder =>
+                {
+                    builder.WithOrigins(allowedOrigins)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            // builder.AllowAnyOrigin()
+            //     .AllowAnyMethod()
+            //     .AllowAnyHeader();
+        });
+
         return builder.Build();
     }
-    
+
     public static WebApplication ConfigurePipeline(this WebApplication app)
-    { 
+    {
+        var allowedOrigins = new[] { "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
         app.UseSerilogRequestLogging();
-    
+
         if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -62,9 +78,10 @@ internal static class HostingExtensions
 
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseCors("Default");
         app.UseIdentityServer();
         app.UseAuthorization();
-        
+
         app.MapRazorPages()
             .RequireAuthorization();
 

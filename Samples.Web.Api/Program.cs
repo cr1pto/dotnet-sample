@@ -21,11 +21,26 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
+var allowedOrigins = new[] { "https://localhost:4200", "https://localhost:5001", "https://localhost:5071" };
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Default",
+        builder =>
+        {
+            builder.WithOrigins(allowedOrigins)
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 
 app.MapGet("identity", (ClaimsPrincipal user) => user.Claims.Select(c => new { c.Type, c.Value }))
     .RequireAuthorization("ApiScope");
+
+app.UseCors("Default");
 
 app.Run();
