@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Main",
+    "Projects": [
+      {
+        "Path": "Samples.Web.Api\\Samples.Web.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "IdentityServerAspNetIdentity\\IdentityServerAspNetIdentity.csproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "SelfHost"
+      }
+    ]
+  }
+]
