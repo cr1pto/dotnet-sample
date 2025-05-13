@@ -6,7 +6,7 @@ namespace IdentityServerAspNetIdentity;
 
 public static class Config
 {
-    private static string apiHost = "https://localhost:5091";
+    private static string apiHost = "https://localhost:5071";
     public static IEnumerable<IdentityResource> IdentityResources =>
         new IdentityResource[]
         {
@@ -35,6 +35,38 @@ public static class Config
             new Client
             {
                 ClientId = "client",
+
+                // no interactive user, use the clientid/secret for authentication
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+
+                // secret for authentication
+                ClientSecrets =
+                {
+                    new Secret("secret".Sha256())
+                },
+
+                // scopes that client has access to
+                AllowedScopes = { "api1" }
+            },
+            new Client
+            {
+                ClientId = "resource_server_1",
+
+                // no interactive user, use the clientid/secret for authentication
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+
+                // secret for authentication
+                ClientSecrets =
+                {
+                    new Secret("secret".Sha256())
+                },
+
+                // scopes that client has access to
+                AllowedScopes = { "api1" }
+            },
+            new Client
+            {
+                ClientId = "primary-api",
 
                 // no interactive user, use the clientid/secret for authentication
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
