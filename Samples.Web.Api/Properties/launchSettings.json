@@ -10,7 +10,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "https": {
+    "https-windows": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
@@ -18,6 +18,18 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "Kestrel__Certificates__Default__Path": "/code/dotnet-sample/certs/aspnetapp.pfx",
+        "Kestrel__Certificates__Default__Password": "changeit",
+        "ConnectionStrings__IdDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=IdDb;Pooling=true;Connection Lifetime=0;"
+      }
+    },
+    "https-mac": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:5070;http://localhost:5071",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Kestrel__Certificates__Default__Path": "/Users/cloud/code/dotnet-sample/certs/aspnetapp.pfx",
         "Kestrel__Certificates__Default__Password": "changeit",
         "ConnectionStrings__IdDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=IdDb;Pooling=true;Connection Lifetime=0;"
       }

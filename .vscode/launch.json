@@ -5,12 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C#: Sample Debug",
-      "type": "dotnet",
-      "request": "launch",
-      "projectPath": "${workspaceFolder}/Samples.Web.Api/Samples.Web.Api.csproj"
-    },
-    {
       "name": "Samples.Web.Api",
       "type": "coreclr",
       "request": "launch",
@@ -23,7 +17,7 @@
         "action": "openExternally",
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
       },
-      "envFile": "${workspaceFolder}/envs/app.env",
+      "envFile": "${workspaceFolder}/envs/windows/app.env",
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }
@@ -41,7 +35,79 @@
         "action": "openExternally",
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
       },
-      "envFile": "${workspaceFolder}/envs/auth.env",
+      "envFile": "${workspaceFolder}/envs/windows/auth.env",
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "IdentityServer",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build dotnet-sample.sln",
+      "program": "${workspaceFolder}/IdentityServerAspNetIdentity/bin/Debug/net9.0/IdentityServerAspNetIdentity.dll",
+      "launchSettingsFilePath": "${workspaceFolder}/IdentityServerAspNetIdentity/Properties/launchSettings.json",
+      "cwd": "${workspaceFolder}/IdentityServerAspNetIdentity",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "envFile": "${workspaceFolder}/envs/windows/auth.env",
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Samples.Web.Api - mac",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build dotnet-sample.sln",
+      "program": "${workspaceFolder}/Samples.Web.Api/bin/Debug/net9.0/Samples.Web.Api.dll",
+      "launchSettingsFilePath": "${workspaceFolder}/Samples.Web.Api/Properties/launchSettings.json",
+      "cwd": "${workspaceFolder}/Samples.Web.Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "envFile": "${workspaceFolder}/envs/mac/app.env",
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Samples.Web.Auth - mac",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build dotnet-sample.sln",
+      "program": "${workspaceFolder}/Samples.Web.Auth/bin/Debug/net9.0/Samples.Web.Auth.dll",
+      "launchSettingsFilePath": "${workspaceFolder}/Samples.Web.Auth/Properties/launchSettings.json",
+      "cwd": "${workspaceFolder}/Samples.Web.Auth",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "envFile": "${workspaceFolder}/envs/mac/auth.env",
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "IdentityServer - mac",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build dotnet-sample.sln",
+      "program": "${workspaceFolder}/IdentityServerAspNetIdentity/bin/Debug/net9.0/IdentityServerAspNetIdentity.dll",
+      "launchSettingsFilePath": "${workspaceFolder}/IdentityServerAspNetIdentity/Properties/launchSettings.json",
+      "cwd": "${workspaceFolder}/IdentityServerAspNetIdentity",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "envFile": "${workspaceFolder}/envs/mac/auth.env",
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }

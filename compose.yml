@@ -8,7 +8,7 @@ services:
     container_name: sample-private-db
     restart: always
     env_file:
-      - ./envs/postgres.env
+      - ./envs/windows/postgres.env
     volumes:
       - ./certs/server.cert:/certs/server.cert:ro
       - ./certs/postgres_cert.key:/certs/server.key:ro
@@ -20,7 +20,7 @@ services:
     image: dpage/pgadmin4:7.8
     restart: always
     env_file:
-      - ./envs/pgadmin.env
+      - ./envs/windows/pgadmin.env
     volumes:
       - ./certs/server.cert:/certs/server.cert:ro
       - ./certs/postgres_cert.key:/certs/server.key:ro
