@@ -50,7 +50,41 @@ public class SeedData
                 Log.Debug("alice already exists");
             }
 
+            var cr1pto = userMgr.FindByNameAsync("cr1pto").Result;
+
+            if (cr1pto == null)
+            {
+                cr1pto = new ApplicationUser
+                {
+                    UserName = "cr1pto",
+                    Email = "cr1pto@email.com",
+                    EmailConfirmed = true,
+                };
+                var result = userMgr.CreateAsync(cr1pto, "E0b9e5d5-0db0-46e5-9578-73e9d3ebe8d2").Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+
+                result = userMgr.AddClaimsAsync(alice, new Claim[]{
+                            new Claim(JwtClaimTypes.Name, "cr1pto coder"),
+                            new Claim(JwtClaimTypes.GivenName, "cr1pto"),
+                            new Claim(JwtClaimTypes.FamilyName, "coder"),
+                            new Claim(JwtClaimTypes.WebSite, "http://cr1pto.com"),
+                        }).Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+                Log.Debug("cr1pto created");
+            }
+            else
+            {
+                Log.Debug("cr1pto already exists");
+            }
+
             var bob = userMgr.FindByNameAsync("bob").Result;
+
             if (bob == null)
             {
                 bob = new ApplicationUser
