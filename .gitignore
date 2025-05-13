@@ -135,3 +135,4 @@ _NCrunch*
 .env
 .vs/
 Rnwood.Smtp4dev-win-x64-3.8.6/
+smtp4dev-data/
