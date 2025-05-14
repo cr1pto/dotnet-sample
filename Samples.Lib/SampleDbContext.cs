@@ -23,7 +23,7 @@ public class SampleDbContext : DbContext
     //    _connectionString = configuration.GetConnectionString("SampleDb");
     //}
 
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UsePostgres(_connectionString);
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UsePostgres(_connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

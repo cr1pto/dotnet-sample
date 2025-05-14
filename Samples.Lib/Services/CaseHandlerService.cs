@@ -83,6 +83,23 @@ namespace Samples.Lib.Services
 
             return caseEntity;
         }
+
+        public async Task<IEnumerable<Attorney>> GetAttorneys(CancellationToken cancellationToken)
+        {
+            var attorneys = await _sampleDbContext.Attorneys.Take(500).ToListAsync(cancellationToken);
+
+            return attorneys;
+        }
+
+        public async Task<Attorney> CreateAttorney(Attorney attorneyEntity, CancellationToken cancellationToken)
+        {
+            var attorney = _sampleDbContext.Attorneys.Add(attorneyEntity);
+
+            await _sampleDbContext.SaveChangesAsync(cancellationToken);
+
+            return attorney.Entity;
+        }
+
     }
 
     public interface ICaseHandlerService
@@ -96,5 +113,7 @@ namespace Samples.Lib.Services
         Task<IEnumerable<Case>> GetCasesByDefendantId(Guid defendantId, CancellationToken cancellationToken);
         Task<IEnumerable<Case>> GetCasesByJudgeId(Guid judgeId, CancellationToken cancellationToken);
         Task<IEnumerable<Case>> GetCasesByJurorId(Guid jurorId, CancellationToken cancellationToken);
+        Task<IEnumerable<Attorney>> GetAttorneys(CancellationToken cancellationToken);
+        Task<Attorney> CreateAttorney(Attorney attorney, CancellationToken cancellationToken);
     }
 }

@@ -7,6 +7,7 @@ using Samples.Lib;
 using Samples.Lib.Entities;
 using Samples.Lib.Services;
 using System.Security.Claims;
+using Samples.Web.Api.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,6 +74,33 @@ app.MapPut("cases/{id}", async (Guid id, Case legalCase, ICaseHandlerService cas
     var cases = await caseHandlerService.UpdateCase(legalCase, cancellationToken);
 
     return Results.Ok(cases);
+})
+    .RequireAuthorization("ApiScope");
+
+
+app.MapGet("attorneys", async (ICaseHandlerService caseHandlerService, CancellationToken cancellationToken) =>
+{
+    var cases = await caseHandlerService.GetAttorneys(cancellationToken);
+
+    return Results.Ok(cases);
+})
+    .RequireAuthorization("ApiScope");
+
+app.MapPost("attorneys", async (AttorneyDto attorneyDto, ICaseHandlerService caseHandlerService, CancellationToken cancellationToken) =>
+{
+    var attorney = new Attorney
+    {
+        Name = attorneyDto.Name,
+        BarNumber = attorneyDto.BarNumber,
+        FirmName = attorneyDto.FirmName,
+        PhoneNumber = attorneyDto.PhoneNumber,
+        Email = attorneyDto.Email,
+        AttorneyType = Enum.Parse<AttorneyType>(attorneyDto.AttorneyType)
+    };
+
+    var cases = await caseHandlerService.CreateAttorney(attorney, cancellationToken);
+
+    return Results.Created();
 })
     .RequireAuthorization("ApiScope");
 
