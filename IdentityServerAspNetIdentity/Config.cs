@@ -102,6 +102,7 @@ public static class Config
 
                 AllowedScopes =
                 {
+                    IdentityServerConstants.StandardScopes.OfflineAccess,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     "verification",

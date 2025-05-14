@@ -5,11 +5,11 @@
       {
         "Path": "Samples.Web.Api\\Samples.Web.Api.csproj",
         "Action": "Start",
-        "DebugTarget": "https"
+        "DebugTarget": "https-windows"
       },
       {
         "Path": "IdentityServerAspNetIdentity\\IdentityServerAspNetIdentity.csproj",
-        "Action": "StartWithoutDebugging",
+        "Action": "Start",
         "DebugTarget": "SelfHost"
       }
     ]

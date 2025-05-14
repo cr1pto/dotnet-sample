@@ -1,26 +1,97 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Samples.Lib.Entities;
 
 namespace Samples.Lib;
 
-public class ApplicationDbContext : DbContext
+public class SampleDbContext : DbContext
 {
     private readonly string _connectionString;
 
-    public ApplicationDbContext(string connectionString)
+    public SampleDbContext(string connectionString)
     {
         _connectionString = connectionString;
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UsePostgres(_connectionString);
+    public SampleDbContext(DbContextOptions<SampleDbContext> options) : base(options)
+    {
+    }
 
+    //public SampleDbContext(IConfiguration configuration)
+    //{
+    //    _connectionString = configuration.GetConnectionString("SampleDb");
+    //}
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UsePostgres(_connectionString);
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Case>(
+            eb =>
+            {
+                //eb.Property(b => b.Id).UseIdentityAlwaysColumn();
+                eb.Property(b => b.Name).HasMaxLength(500);
+                eb.Property(b => b.CaseNumber).HasMaxLength(200);
+            }
+            );
+
+        //modelBuilder.Entity<Case>().HasKey();
+
+        modelBuilder.Entity<Attorney>(
+          eb =>
+          {
+              //eb.Property(b => b.Id).UseIdentityAlwaysColumn();
+              eb.Property(b => b.Name).HasMaxLength(200);
+              eb.Property(b => b.BarNumber).HasMaxLength(200);
+              eb.Property(b => b.FirmName).HasMaxLength(200);
+              eb.Property(b => b.PhoneNumber).HasMaxLength(50);
+              eb.Property(b => b.Email).HasMaxLength(200);
+              eb.Property(b => b.AttorneyType).HasMaxLength(20);
+          }
+          );
+
+        modelBuilder.Entity<Defendant>(
+        eb =>
+        {
+            //eb.Property(b => b.Id).UseIdentityAlwaysColumn();
+            eb.Property(b => b.Name).HasMaxLength(200);
+        }
+        );
+
+        modelBuilder.Entity<Judge>(
+        eb =>
+        {
+            //eb.Property(b => b.Id).UseIdentityAlwaysColumn();
+            eb.Property(b => b.Name).HasMaxLength(200);
+        }
+        );
+
+        modelBuilder.Entity<Juror>(
+        eb =>
+        {
+            //eb.Property(b => b.Id).UseIdentityAlwaysColumn();
+            eb.Property(b => b.Name).HasMaxLength(200);
+        }
+        );
+
+        modelBuilder.Entity<Inmate>(
+        eb =>
+        {
+            //eb.Property(b => b.Id).UseIdentityAlwaysColumn();
+            eb.Property(b => b.Name).HasMaxLength(200);
+            eb.Property(b => b.ArraignmentDate);
+            eb.Property(b => b.ArrestDate);
+            eb.Property(b => b.SentencingDate);
+        }
+        );
+
+    }
+
+    public DbSet<Case> Cases { get; set; }
     public DbSet<Attorney> Attorneys { get; set; }
     public DbSet<Defendant> Defendants { get; set; }
     public DbSet<Inmate> Inmates { get; set; }
     public DbSet<Judge> Judges { get; set; }
     public DbSet<Juror> Jurors { get; set; }
-    public DbSet<Case> Cases { get; set; }
-    public DbSet<PeaceOfficer> Officers { get; set; }
-    public DbSet<CourtReporter> CourtReporters { get; set; }
-    public DbSet<Charge> Charges { get; set; }
 }
