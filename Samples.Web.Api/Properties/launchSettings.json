@@ -19,7 +19,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "Kestrel__Certificates__Default__Path": "/code/dotnet-sample/certs/aspnetapp.pfx",
         "Kestrel__Certificates__Default__Password": "changeit",
-        "ConnectionStrings__SampleDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=IdDb;Pooling=true;Connection Lifetime=0;"
+        "ConnectionStrings__SampleDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=SampleDb;Pooling=true;Connection Lifetime=0;"
       }
     },
     "https-mac": {
@@ -31,7 +31,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "Kestrel__Certificates__Default__Path": "/Users/cloud/code/dotnet-sample/certs/aspnetapp.pfx",
         "Kestrel__Certificates__Default__Password": "changeit",
-        "ConnectionStrings__SampleDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=IdDb;Pooling=true;Connection Lifetime=0;"
+        "ConnectionStrings__SampleDb": "User ID=postgres;Password=ItIsAS3cretToEverybody;Host=localhost;Port=5432;Database=SampleDb;Pooling=true;Connection Lifetime=0;"
       }
     }
   }

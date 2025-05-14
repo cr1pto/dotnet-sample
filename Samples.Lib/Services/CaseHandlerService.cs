@@ -39,7 +39,8 @@ namespace Samples.Lib.Services
 
         public async Task<IEnumerable<Case>> GetCases(CancellationToken cancellationToken)
         {
-            var legalCases = await _sampleDbContext.Cases.Select(c => c).Take(500).ToListAsync(cancellationToken);
+            var defendant = await _sampleDbContext.Defendants.FirstOrDefaultAsync(cancellationToken);
+            var legalCases = await _sampleDbContext.Cases.Take(500).ToListAsync(cancellationToken);
 
             return legalCases;
         }

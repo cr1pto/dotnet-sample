@@ -7,17 +7,17 @@ namespace Samples.Lib;
 
 public class SampleDbContext : DbContext
 {
+
+
+    public SampleDbContext(DbContextOptions<SampleDbContext> options) : base(options)
+    {
+    }
     private readonly string _connectionString;
 
     public SampleDbContext(string connectionString)
     {
         _connectionString = connectionString;
     }
-
-    public SampleDbContext(DbContextOptions<SampleDbContext> options) : base(options)
-    {
-    }
-
     //public SampleDbContext(IConfiguration configuration)
     //{
     //    _connectionString = configuration.GetConnectionString("SampleDb");

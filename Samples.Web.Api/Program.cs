@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 
+using Microsoft.EntityFrameworkCore;
 using Samples.Lib;
 using Samples.Lib.Entities;
 using Samples.Lib.Services;
@@ -31,6 +32,12 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+
+using var db = scope.ServiceProvider.GetRequiredService<SampleDbContext>();
+
+await db.Database.MigrateAsync();
 
 app.UseHttpsRedirection();
 
